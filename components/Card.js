@@ -14,9 +14,11 @@ const styles = StyleSheet.create({
   card: {
     alignItems: 'center',
     shadowColor: 'black',
+    borderColor: 'black',
     textShadowOffset: {
       width: 0,
-      height: 2
+      height: 2,
+      margin:10
     },
     shadowRadius: 6,
     shadowOpacity: 0.32,
