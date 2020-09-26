@@ -12,19 +12,21 @@ const Card = (props) => {
 
 const styles = StyleSheet.create({
   card: {
+
     alignItems: 'center',
     shadowColor: 'black',
     borderColor: 'black',
+    shadowRadius: 6,
+    shadowOpacity: 0.32,
+    elevation: 4,
+    padding: 12,
+    borderRadius: 12,
+  
     textShadowOffset: {
       width: 0,
       height: 2,
       margin:10
     },
-    shadowRadius: 6,
-    shadowOpacity: 0.32,
-    elevation: 4,
-    padding: 12,
-    borderRadius: 12
   }
 })
 

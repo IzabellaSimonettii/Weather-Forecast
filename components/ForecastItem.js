@@ -4,6 +4,8 @@ import Card from './Card';
 
 const ForecastItem = (props) => {
 
+  const time = data => (new Date(data * 1000).toLocaleTimeString());
+
   return (
     <Card styles={styles.card}>
       <View style={styles.screen}>
@@ -14,12 +16,15 @@ const ForecastItem = (props) => {
           <View>
 
             <View style={styles.firstLine}>
-              <Text>{new Date(props.forecast.dt * 1000).toLocaleTimeString()} - {props.forecast.weather[0].description}</Text>
+              <Text>{time(props.forecast.dt)} - {props.forecast.weather[0].description}</Text>
             </View>
 
-            <View style={styles.secondLine}>
-              <Text style={styles.value}>Sunrise: {new Date(props.forecast.sunrise * 1000).toLocaleTimeString()} - {props.forecast.weather[0].description}</Text>
-              {/* <Text style={styles.value}>Sunset: {new Date(0).setUTCSeconds(props.forecast.main.sunset).toLocaleTimeString()}</Text> */}
+            <View style={styles.secondLine} >
+                <Text style={styles.box}>Sunrise: {time(props.forecast.main.sunrise)} </Text>
+                <Text style={styles.box}>Sunset: {time(props.forecast.main.sunset)}</Text>
+            </View>
+
+            <View style={styles.thirdLine}>
               <Text style={styles.value}>Min: {parseFloat(props.forecast.main.temp_min).toFixed(1) + "\u00B0"}</Text>
               <Text style={styles.value}>Max: {parseFloat(props.forecast.main.temp_max).toFixed(1) + "\u00B0"}</Text>
               <Text style={styles.value}>Hum: {props.forecast.main.humidity}%</Text>
@@ -39,9 +44,14 @@ const styles = StyleSheet.create ({
   firstLine: {
     justifyContent: 'center',
     flexDirection: 'row',
-    marginTop:10
+    marginTop: 10
   },
   secondLine: {
+    justifyContent: 'column',
+    flexDirection: 'row',
+    marginTop: 5
+  },
+  thirdLine: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
@@ -50,7 +60,9 @@ const styles = StyleSheet.create ({
     borderTopColor: '#DDD'
   },
   card: {
-    margin: 10,
+    margin: 40,
+    borderWidth: 1,
+    borderColor: 'DDD'
   },
   screen: {
     flexDirection: 'row'
@@ -61,6 +73,11 @@ const styles = StyleSheet.create ({
   },
   value: {
     marginHorizontal: 2
+  },
+  box: {
+    margin: 2,
+    borderBottonWidth: 2,
+    borderTopColor: '#DDD'
   }
 });
 export default ForecastItem;
